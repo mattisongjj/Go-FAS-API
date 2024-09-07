@@ -32,3 +32,30 @@ Ensure you have met the following requirements:
 - **Applications**
   - `GET /api/applications`: Get all applications.
   - `POST /api/applications`: Create a new application.
+
+### Making POST Request
+
+When making POST requests, ensure that the request body is formatted in JSON as per the following structures:
+
+#### Applicant
+
+```json
+{
+  "id": "string",
+  "name": "string",
+  "employment_status": "employed | unemployed",
+  "sex": "male | female",
+  "date_of_birth": "YYYY-MM-DD",
+  "household": [
+    {
+      "id": "string",
+      "applicant_id": "string",
+      "name": "string",
+      "employment_status": "employed | unemployed",
+      "sex": "male | female",
+      "date_of_birth": "YYYY-MM-DD",
+      "relation": "mother | father | spouse | sister | brother | daughter | son | other"
+    }
+  ]
+}
+

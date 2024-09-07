@@ -17,6 +17,19 @@ Ensure you have met the following requirements:
    ```bash
     go run cmd/api/main.go
   The application will start and listen on http://localhost:8080
+ 
+## Authentication
+
+As a placeholder for authentication in a large scale app, to authenticate a request via a middleware function, follow the steps below:
+
+1. **Send the Username**: Include the username "john" in the URL parameters.
+   - Example: `http://localhost:8080/api/applicants?username=john`
+
+2. **Include Authorization Header**: Add an `Authorization` header with the value `123456ABC` in the request.
+   - Example:
+     ```
+     "Authorization": "123456ABC"
+     ```
 
 ### Endpoints Overview
 
@@ -32,19 +45,6 @@ Ensure you have met the following requirements:
 - **Applications**
   - `GET /api/applications`: Get all applications.
   - `POST /api/applications`: Create a new application.
- 
-## Authentication
-
-As a placeholder for authentication in a large scale app, to authenticate a request via a middleware function, follow the steps below:
-
-1. **Send the Username**: Include the username "john" in the URL parameters.
-   - Example: `http://localhost:8080/api/applicants?username=john`
-
-2. **Include Authorization Header**: Add an `Authorization` header with the value `123456ABC` in the request.
-   - Example:
-     ```
-     "Authorization": "123456ABC"
-     ```
 
 ### Making POST Request
 

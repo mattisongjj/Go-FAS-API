@@ -7,8 +7,8 @@ import (
 	"github.com/mattisongjj/Go-FAS-API/internal/tools"
 )
 
-// Applicant response
-type ApplicantResponse struct {
+// Applicant responses
+type GetApplicantResponse struct {
 	Code       int
 	Applicants []tools.Applicant
 }
@@ -16,6 +16,28 @@ type ApplicantResponse struct {
 type CreateApplicantResponse struct {
 	Code      int
 	Applicant tools.Applicant
+}
+
+// Scheme responses
+type GetSchemeResponse struct {
+	Code    int
+	Schemes []tools.Scheme
+}
+
+type CreateSchemeResponse struct {
+	Code   int
+	Scheme tools.Scheme
+}
+
+// Application responses
+type GetApplicationResponse struct {
+	Code         int
+	Applications []tools.Application
+}
+
+type CreateApplicationResponse struct {
+	Code        int
+	Application tools.Application
 }
 
 // Error response

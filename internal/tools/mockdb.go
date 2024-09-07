@@ -42,6 +42,63 @@ var mockApplicantDetails = map[string]Applicant{
 	},
 }
 
+var mockSchemeDetails = map[string]Scheme{
+	"1": {
+		ID:   "1",
+		Name: "Retrenchment Assistance Scheme",
+		Criteria: map[string]interface{}{
+			"employment_status": Unemployed,
+		},
+		Benefits: []Benefit{
+			{
+				ID:       "1",
+				SchemeID: "1",
+				Name:     "SkillsFuture Credits",
+				Amount:   500.00,
+			},
+			{
+				ID:       "2",
+				SchemeID: "1",
+				Name:     "CDC Vouchers",
+				Amount:   100.00,
+			},
+		},
+	},
+	"2": {
+		ID:   "2",
+		Name: "Retrenchment Assistance Scheme (families)",
+		Criteria: map[string]interface{}{
+			"employment_status": Unemployed,
+			"has_children": map[string]interface{}{
+				"school_level": "== primary",
+			},
+		},
+		Benefits: []Benefit{
+			{
+				ID:       "3",
+				SchemeID: "2",
+				Name:     "School Meal Vouchers",
+				Amount:   200.00,
+			},
+		},
+	},
+}
+
+var mockApplicationDetails = map[string]Application{
+	"1": {
+		ID:          "1",
+		ApplicantID: "1",
+		SchemeID:    "1",
+		Status:      "Approved",
+	},
+	"2": {
+		ID:          "2",
+		ApplicantID: "2",
+		SchemeID:    "2",
+		Status:      "Pending",
+	},
+}
+
 func (d *mockDB) GetUserLoginDetails(username string) *LoginDetails {
 	var clientData = LoginDetails{}
 	clientData, ok := mockLoginDetails[username]
@@ -67,6 +124,42 @@ func (d *mockDB) CreateApplicant(applicant *Applicant) *Applicant {
 	}
 	mockApplicantDetails[applicant.Id] = *applicant
 	return applicant
+}
+
+func (d *mockDB) GetSchemes() []Scheme {
+	schemes := make([]Scheme, 0, len(mockSchemeDetails))
+
+	for _, scheme := range mockSchemeDetails {
+		schemes = append(schemes, scheme)
+	}
+
+	return schemes
+}
+
+func (d *mockDB) CreateScheme(scheme *Scheme) *Scheme {
+	if _, exists := mockSchemeDetails[scheme.ID]; exists {
+		return nil
+	}
+	mockSchemeDetails[scheme.ID] = *scheme
+	return scheme
+}
+
+func (d *mockDB) GetApplications() []Application {
+	applications := make([]Application, 0, len(mockApplicationDetails))
+
+	for _, application := range mockApplicationDetails {
+		applications = append(applications, application)
+	}
+
+	return applications
+}
+
+func (d *mockDB) CreateApplication(application *Application) *Application {
+	if _, exists := mockApplicationDetails[application.ID]; exists {
+		return nil
+	}
+	mockApplicationDetails[application.ID] = *application
+	return application
 }
 
 func (d *mockDB) SetupDatabase() error {

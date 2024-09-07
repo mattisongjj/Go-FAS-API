@@ -75,6 +75,10 @@ type DatabaseInterface interface {
 	GetUserLoginDetails(username string) *LoginDetails
 	GetApplicants() []Applicant
 	CreateApplicant(*Applicant) *Applicant
+	GetSchemes() []Scheme
+	CreateScheme(*Scheme) *Scheme
+	GetApplications() []Application
+	CreateApplication(*Application) *Application
 	SetupDatabase() error
 }
 

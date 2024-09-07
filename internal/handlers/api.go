@@ -18,6 +18,14 @@ func Handler(r *chi.Mux) {
 		// Applicant routes
 		router.Get("/applicants", GetApplicants)
 		router.Post("/applicants", PostApplicants)
+
+		// Scheme routes
+		router.Get("/schemes", GetSchemes)
+		router.Post("/schemes", PostSchemes)
+
+		//Application routes
+		router.Get("/applications", GetApplications)
+		router.Post("/applications", PostApplication)
 	})
 
 }

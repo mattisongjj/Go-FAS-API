@@ -9,7 +9,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func GetApplicants(w http.ResponseWriter, r *http.Request) {
+func GetApplications(w http.ResponseWriter, r *http.Request) {
 	var err error
 
 	var database *tools.DatabaseInterface
@@ -19,12 +19,12 @@ func GetApplicants(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var applicants []tools.Applicant
-	applicants = (*database).GetApplicants()
+	var applications []tools.Application
+	applications = (*database).GetApplications()
 
-	var response = api.GetApplicantResponse{
-		Code:       http.StatusOK,
-		Applicants: applicants,
+	var response = api.GetApplicationResponse{
+		Code:         http.StatusOK,
+		Applications: applications,
 	}
 
 	w.Header().Set("Content-Type", "application/json")

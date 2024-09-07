@@ -1,7 +1,5 @@
 package tools
 
-import "time"
-
 type mockDB struct{}
 
 var mockLoginDetails = map[string]LoginDetails{
@@ -21,7 +19,7 @@ var mockApplicantDetails = map[string]Applicant{
 		Name:             "John Doe",
 		EmploymentStatus: Unemployed,
 		Sex:              "male",
-		DateOfBirth:      time.Date(1985, time.January, 1, 0, 0, 0, 0, time.UTC),
+		DateOfBirth:      "1985-01-01",
 		Household:        []HouseholdMember{},
 	},
 	"2": {
@@ -29,7 +27,7 @@ var mockApplicantDetails = map[string]Applicant{
 		Name:             "Jane Smith",
 		EmploymentStatus: Employed,
 		Sex:              "female",
-		DateOfBirth:      time.Date(1990, time.February, 10, 0, 0, 0, 0, time.UTC),
+		DateOfBirth:      "1999-02-02",
 		Household: []HouseholdMember{
 			{
 				ID:               "3",
@@ -37,7 +35,7 @@ var mockApplicantDetails = map[string]Applicant{
 				Name:             "Child One",
 				EmploymentStatus: Unemployed,
 				Sex:              "female",
-				DateOfBirth:      time.Date(2015, time.March, 15, 0, 0, 0, 0, time.UTC),
+				DateOfBirth:      "2015-03-15",
 				Relation:         RelationDaughter,
 			},
 		},
@@ -61,6 +59,14 @@ func (d *mockDB) GetApplicants() []Applicant {
 	}
 
 	return applicants
+}
+
+func (d *mockDB) CreateApplicant(applicant *Applicant) *Applicant {
+	if _, exists := mockApplicantDetails[applicant.Id]; exists {
+		return nil
+	}
+	mockApplicantDetails[applicant.Id] = *applicant
+	return applicant
 }
 
 func (d *mockDB) SetupDatabase() error {

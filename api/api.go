@@ -13,6 +13,11 @@ type ApplicantResponse struct {
 	Applicants []tools.Applicant
 }
 
+type CreateApplicantResponse struct {
+	Code      int
+	Applicant tools.Applicant
+}
+
 // Error response
 type Error struct {
 

@@ -12,9 +12,12 @@ func Handler(r *chi.Mux) {
 
 	r.Route("/api", func(router chi.Router) {
 
+		// Auth Middleware
 		router.Use(middleware.Authorization)
 
+		// Applicant routes
 		router.Get("/applicants", GetApplicants)
+		router.Post("/applicants", PostApplicants)
 	})
 
 }

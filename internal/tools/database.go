@@ -1,8 +1,6 @@
 package tools
 
 import (
-	"time"
-
 	log "github.com/sirupsen/logrus"
 )
 
@@ -34,13 +32,12 @@ type LoginDetails struct {
 }
 
 type Applicant struct {
-	Id                 string            `json:"id"`
-	Name               string            `json:"name"`
-	EmploymentStatus   EmploymentStatus  `json:"employment_status"`
-	Sex                string            `json:"sex"`
-	DateOfBirth        time.Time         `json:"date_of_birth"`
-	DateOfRetrenchment *time.Time        `json:"date_of_retrenchment,omitempty"`
-	Household          []HouseholdMember `json:"household"`
+	Id               string            `json:"id"`
+	Name             string            `json:"name"`
+	EmploymentStatus EmploymentStatus  `json:"employment_status"`
+	Sex              string            `json:"sex"`
+	DateOfBirth      string            `json:"date_of_birth"`
+	Household        []HouseholdMember `json:"household"`
 }
 
 type HouseholdMember struct {
@@ -49,7 +46,7 @@ type HouseholdMember struct {
 	Name             string           `json:"name"`
 	EmploymentStatus EmploymentStatus `json:"employment_status"`
 	Sex              string           `json:"sex"`
-	DateOfBirth      time.Time        `json:"date_of_birth"`
+	DateOfBirth      string           `json:"date_of_birth"`
 	Relation         Relation         `json:"relation"`
 }
 
@@ -77,6 +74,7 @@ type Application struct {
 type DatabaseInterface interface {
 	GetUserLoginDetails(username string) *LoginDetails
 	GetApplicants() []Applicant
+	CreateApplicant(*Applicant) *Applicant
 	SetupDatabase() error
 }
 

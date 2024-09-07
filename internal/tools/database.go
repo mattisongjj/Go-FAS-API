@@ -79,6 +79,7 @@ type DatabaseInterface interface {
 	CreateScheme(*Scheme) *Scheme
 	GetApplications() []Application
 	CreateApplication(*Application) *Application
+	GetEligibleSchemes(applicantID string) []Scheme
 	SetupDatabase() error
 }
 

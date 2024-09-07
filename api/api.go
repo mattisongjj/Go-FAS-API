@@ -40,6 +40,12 @@ type CreateApplicationResponse struct {
 	Application tools.Application
 }
 
+// Eligible schemes
+type GetEligibleSchemesResponse struct {
+	Code    int
+	Schemes []tools.Scheme
+}
+
 // Error response
 type Error struct {
 

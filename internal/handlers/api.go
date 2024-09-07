@@ -21,6 +21,7 @@ func Handler(r *chi.Mux) {
 
 		// Scheme routes
 		router.Get("/schemes", GetSchemes)
+		router.Get("/schemes/eligible", GetEligibleSchemes)
 		router.Post("/schemes", PostSchemes)
 
 		//Application routes

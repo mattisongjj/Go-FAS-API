@@ -25,7 +25,7 @@ var mockApplicantDetails = map[string]Applicant{
 	"2": {
 		Id:               "2",
 		Name:             "Jane Smith",
-		EmploymentStatus: Employed,
+		EmploymentStatus: Unemployed,
 		Sex:              "female",
 		DateOfBirth:      "1999-02-02",
 		Household: []HouseholdMember{
@@ -69,9 +69,7 @@ var mockSchemeDetails = map[string]Scheme{
 		Name: "Retrenchment Assistance Scheme (families)",
 		Criteria: map[string]interface{}{
 			"employment_status": Unemployed,
-			"has_children": map[string]interface{}{
-				"school_level": "== primary",
-			},
+			"has_children":      true,
 		},
 		Benefits: []Benefit{
 			{
@@ -160,6 +158,49 @@ func (d *mockDB) CreateApplication(application *Application) *Application {
 	}
 	mockApplicationDetails[application.ID] = *application
 	return application
+}
+
+func (d *mockDB) GetEligibleSchemes(applicantID string) []Scheme {
+	applicant, exists := mockApplicantDetails[applicantID]
+	if !exists {
+		return nil
+	}
+
+	var eligibleSchemes []Scheme
+
+	for _, scheme := range mockSchemeDetails {
+		if isEligible(applicant, scheme) {
+			eligibleSchemes = append(eligibleSchemes, scheme)
+		}
+	}
+
+	return eligibleSchemes
+}
+
+// Given an applicant and scheme, check if applicant qualifies for scheme
+func isEligible(applicant Applicant, scheme Scheme) bool {
+	for key, value := range scheme.Criteria {
+		switch key {
+		case "employment_status":
+			if applicant.EmploymentStatus != value {
+				return false
+			}
+		case "has_children":
+			hasChildren := false
+			for _, member := range applicant.Household {
+				if member.Relation == RelationSon || member.Relation == RelationDaughter {
+					hasChildren = true
+					break
+				}
+			}
+			if hasChildren != value.(bool) {
+				return false
+			}
+			// Add other criteria here
+		}
+	}
+
+	return true
 }
 
 func (d *mockDB) SetupDatabase() error {

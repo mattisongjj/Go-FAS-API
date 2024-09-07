@@ -30,6 +30,8 @@ As a placeholder for authentication in a large scale app, to authenticate a requ
      ```
      "Authorization": "123456ABC"
      ```
+## API Documentation
+The API documentation for this application can be found [here](https://documenter.getpostman.com/view/33827285/2sAXjRW9NG)
 
 ### Endpoints Overview
 

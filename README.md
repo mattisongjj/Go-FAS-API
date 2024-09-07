@@ -87,7 +87,6 @@ When making POST requests, ensure that the request body is formatted in JSON as 
   "benefits": [
     {
       "id": "string",
-      "scheme_id": "string",
       "name": "string",
       "amount": "number"
     }

@@ -51,16 +51,14 @@ var mockSchemeDetails = map[string]Scheme{
 		},
 		Benefits: []Benefit{
 			{
-				ID:       "1",
-				SchemeID: "1",
-				Name:     "SkillsFuture Credits",
-				Amount:   500.00,
+				ID:     "1",
+				Name:   "SkillsFuture Credits",
+				Amount: 500.00,
 			},
 			{
-				ID:       "2",
-				SchemeID: "1",
-				Name:     "CDC Vouchers",
-				Amount:   100.00,
+				ID:     "2",
+				Name:   "CDC Vouchers",
+				Amount: 100.00,
 			},
 		},
 	},
@@ -73,10 +71,9 @@ var mockSchemeDetails = map[string]Scheme{
 		},
 		Benefits: []Benefit{
 			{
-				ID:       "3",
-				SchemeID: "2",
-				Name:     "School Meal Vouchers",
-				Amount:   200.00,
+				ID:     "3",
+				Name:   "School Meal Vouchers",
+				Amount: 200.00,
 			},
 		},
 	},

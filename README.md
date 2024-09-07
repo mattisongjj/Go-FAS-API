@@ -58,4 +58,35 @@ When making POST requests, ensure that the request body is formatted in JSON as 
     }
   ]
 }
+```
+#### Scheme
+
+```json
+{
+  "id": "string",
+  "name": "string",
+  "criteria": {
+    "employment_status": "employed | unemployed",
+    "has_children": "true | false"
+  },
+  "benefits": [
+    {
+      "id": "string",
+      "scheme_id": "string",
+      "name": "string",
+      "amount": "number"
+    }
+  ]
+}
+```
+#### Application
+```json
+{
+  "id": "string",
+  "applicant_id": "string",
+  "scheme_id": "string",
+  "status": "string"
+}
+```
+
 
